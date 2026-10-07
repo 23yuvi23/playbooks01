@@ -1,0 +1,15 @@
+---
+- name: Install and Start the service 
+  hosts: localhost
+
+  tasks:
+  - name: Installing nginx
+    yum:               # module hai yum 
+      name: nginx      # package name denge
+      state: present   # make sure nginx installed hai system mai 
+  
+  - name: Starting the nginx service 
+    service:              # module 
+      name: nginx
+      state: started   # state check krre start ho gya hai krke 
+      enabled: true    # server reboot hone pr b up and running ho 

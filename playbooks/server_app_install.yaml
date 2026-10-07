@@ -1,0 +1,16 @@
+---
+- name: installing nginx on remote server 
+  hosts: users
+  become: yes
+
+  tasks:
+  - name: Installing nginx 
+    dnf:
+      name: nginx
+      state: present
+  
+  - name: Starting nginx server 
+    service:
+      name: nginx 
+      state: started
+      enabled: true
