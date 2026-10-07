@@ -1,0 +1,10 @@
+---
+- name: change permissions
+  hosts: users
+  become: yes
+
+  tasks:
+  - name: change permissions of a file persent 
+    file:
+      path: /tmp/myfile.txt
+      mode: u=r,g=rw

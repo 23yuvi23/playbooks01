@@ -1,0 +1,8 @@
+---
+- name: Run a script 
+  hosts: users
+  become: yes
+
+  tasks:
+  - name: Run script 
+    shell: /tmp/script/test.sh

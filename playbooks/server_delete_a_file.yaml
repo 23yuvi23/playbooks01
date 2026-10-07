@@ -1,0 +1,14 @@
+---
+- name: file module 
+  hosts: users
+
+  tasks:
+  - name: deleting a file 
+    file:
+      path: /tmp/newfile.txt
+      state: absent
+
+  - name: delete a dir 
+    file:
+      path: /tmp/myfolder
+      state: absent
