@@ -1,0 +1,13 @@
+---
+- name: modify cron
+  hosts: users
+
+  tasks:
+  - name: Removing a cron i created earlier 
+    cron:
+      name: VAR
+      env: yes
+      user: worker 
+      job: /tmp/script/test.sh
+      insertafter: #Ansible: Run Test Script
+

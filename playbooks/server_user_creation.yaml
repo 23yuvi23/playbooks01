@@ -1,0 +1,14 @@
+---
+- name: User Mgm 
+  hosts: users
+  become: true
+
+  tasks:
+  - name: User Creation 
+    user:
+      name: ansible01
+      comment: new user from ansible playbook 
+      # home: /home/ansible
+      # shell: /bin/bash
+      # group: worker    this is for single group 
+      groups: worker,root,ansible01 

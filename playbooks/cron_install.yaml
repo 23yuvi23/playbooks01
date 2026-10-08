@@ -1,0 +1,16 @@
+---
+- name: installing cron 
+  hosts: users
+  become: yes
+
+  tasks:
+    - name: installig croni 
+      ansible.builtin.dnf:
+        name: cronie,crontabs
+        state: present
+    - name: starting croni service 
+      ansible.builtin.service:
+        name: crond
+        state: started
+        enabled: true
+

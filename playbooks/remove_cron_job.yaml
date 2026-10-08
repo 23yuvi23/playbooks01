@@ -1,0 +1,10 @@
+---
+- name: Removing a cron job 
+  hosts: users
+
+  tasks:
+  - name: Removing a cron i created earlier 
+    cron:
+      name: Run Test Script
+      state: absent
+      # user: worker 

@@ -1,0 +1,19 @@
+---
+- name: Firewall changes 
+  hosts: users 
+  become: yes
+
+  tasks:
+  - name: Enable a service in firewalld
+    ansible.posix.firewalld:
+      # service: nginx
+      port: 80/tcp
+      # port:  de skte hai service ki jagah 
+      permanent: true 
+      state: enabled 
+
+      # firewall enable krne ke liye reload karna hoga 
+  - name: Relaod the firewalld
+    service:
+      name: firewalld
+      state: reloaded

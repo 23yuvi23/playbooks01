@@ -1,0 +1,12 @@
+---
+- name: Download files 
+  hosts: all 
+
+  tasks:
+  - name: Download files
+    get_url:
+      url: https://www.python.org/ftp/python/3.14.8/Python-3.14.8.tar.xz
+      dest: /tmp/script/
+      owner: worker
+      group: worker
+      mode: 0777

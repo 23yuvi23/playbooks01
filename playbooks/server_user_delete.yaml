@@ -1,0 +1,12 @@
+---
+- name: user deletion ansible01 
+  hosts: users
+  become: yes
+
+  tasks:
+  - name: user deletion 
+    user:
+      name: ansible01
+      state: absent
+      # home dir b remove krni hai to dataa b 
+      remove: yes 
