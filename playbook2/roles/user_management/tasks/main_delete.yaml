@@ -1,0 +1,27 @@
+---
+- name: Read users from CSV
+  community.general.read_csv:
+    path: "{{ users_csv_file }}"
+  register: csv_users
+  delegate_to: localhost
+  run_once: true
+
+- name: Delete users and home directories
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    state: absent
+    remove: true
+  loop: "{{ csv_users.list }}"
+  loop_control:
+    label: "{{ item.username }}"
+
+- name: Delete sudoers file
+  ansible.builtin.file:
+    path: "/etc/sudoers.d/{{ sudo_group }}"
+    state: absent
+
+- name: Delete groups
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: absent
+  loop: "{{ users_groups }}"

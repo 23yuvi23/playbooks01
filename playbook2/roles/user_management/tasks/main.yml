@@ -1,0 +1,25 @@
+---
+- name: Create groups
+  ansible.builtin.group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ users_groups }}"
+
+- name: Read users from CSV
+  community.general.read_csv:
+    path: "{{ users_csv_file }}"
+  register: csv_users
+  delegate_to: localhost
+  run_once: true
+
+- name: Create users
+  ansible.builtin.user:
+    name: "{{ item.username }}"
+    group: "{{ item.group }}"
+    shell: "{{ '/sbin/nologin' if item.nologin | bool else '/bin/bash' }}"
+    password: "{{ item.password | password_hash('sha512') }}"
+    update_password: on_create
+    state: present
+  loop: "{{ csv_users.list }}"
+  loop_control:
+    label: "{{ item.username }}"

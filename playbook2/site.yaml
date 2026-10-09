@@ -1,0 +1,7 @@
+---
+- name: Bulk user management
+  hosts: users
+  become: true
+
+  roles:
+  - user_management

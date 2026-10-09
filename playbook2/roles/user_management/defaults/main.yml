@@ -1,0 +1,9 @@
+---
+users_csv_file: "{{ role_path }}/files/users.csv"
+
+users_groups:
+  - dev
+  - intern
+  - admin
+
+sudo_group: admin
